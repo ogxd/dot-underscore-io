@@ -8,8 +8,8 @@
     <ProjectGuid>{146FB3F3-03E6-4FAE-94CC-E347DBA08370}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ogx</RootNamespace>
-    <AssemblyName>MacDotUnderscoreIO</AssemblyName>
+    <RootNamespace>Ogx.DotUnderscoreIO</RootNamespace>
+    <AssemblyName>DotUnderscoreIO</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

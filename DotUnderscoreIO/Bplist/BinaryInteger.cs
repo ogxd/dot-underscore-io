@@ -24,7 +24,6 @@ namespace Ogx {
         }
 
         public override void Deserialize(BinaryParser reader) {
-            Console.WriteLine(length);
             switch (length) {
                 case 8:
                     value = reader.ReadByte();
