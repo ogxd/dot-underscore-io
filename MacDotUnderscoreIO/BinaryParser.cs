@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 
 namespace Ogx {
 
-    public class BinaryReader2 {
+    public class BinaryParser {
 
         private byte[] bytes;
         private int position;
 
-        public BinaryReader2(byte[] bytes) {
+        public BinaryParser(byte[] bytes) {
             this.bytes = bytes;
         }
 

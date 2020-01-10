@@ -12,11 +12,11 @@ namespace Ogx {
 
         }
 
-        public Entry(BinaryReader2 reader) {
+        public Entry(BinaryParser reader) {
             Deserialize(reader);
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
             Id = reader.ReadUInt32();
             Offset = reader.ReadUInt32();
             Size = reader.ReadUInt32();

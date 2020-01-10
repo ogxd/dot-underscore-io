@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace Ogx {
@@ -22,7 +21,7 @@ namespace Ogx {
             attributes = new Attribute[0];
         }
 
-        public Attributes(BinaryReader2 reader) {
+        public Attributes(BinaryParser reader) {
             Deserialize(reader);
         }
 
@@ -30,7 +29,7 @@ namespace Ogx {
             return base.ToString() + $"({NumAttributes})";
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
             Signature = Encoding.UTF8.GetString(reader.ReadBytes(4));
             Unknown1 = reader.ReadUInt32();
             LogicalFileSize = reader.ReadUInt32();

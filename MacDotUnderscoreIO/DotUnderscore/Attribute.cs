@@ -18,7 +18,7 @@ namespace Ogx {
             Value = new byte[0];
         }
 
-        public Attribute(BinaryReader2 reader) {
+        public Attribute(BinaryParser reader) {
             Deserialize(reader);
         }
 
@@ -26,7 +26,7 @@ namespace Ogx {
             return Name;
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
             ValueOffset = reader.ReadUInt32();
             ValueLen = reader.ReadUInt32();
             Unknown = reader.ReadUInt16();

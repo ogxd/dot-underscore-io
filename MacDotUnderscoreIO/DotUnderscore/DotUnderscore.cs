@@ -18,11 +18,11 @@ namespace Ogx {
             attributes = new Attributes();
         }
 
-        public DotUnderscore(BinaryReader2 reader) {
+        public DotUnderscore(BinaryParser reader) {
             Deserialize(reader);
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
             header = new Header(reader);
             entry1 = new Entry(reader);
             entry2 = new Entry(reader);

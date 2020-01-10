@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace Ogx {
 
-    public class BinaryString : BinaryProperty {
+    public class BinaryStringASCII : BinaryProperty {
 
         public string value;
         public int length;
 
-        public BinaryString() {
+        public BinaryStringASCII() {
             
         }
 
-        public BinaryString(BinaryReader2 reader, int halfByte) {
+        public BinaryStringASCII(BinaryParser reader, int halfByte) {
             length = halfByte;
             Deserialize(reader);
         }
@@ -23,7 +21,7 @@ namespace Ogx {
             return base.ToString() + $" ({length})";
         }
 
-        public override void Deserialize(BinaryReader2 reader) {
+        public override void Deserialize(BinaryParser reader) {
             if (length == 15) {
                 length = reader.ReadInt32();
             }

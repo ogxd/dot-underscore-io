@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Ogx {
 
@@ -14,7 +12,7 @@ namespace Ogx {
             
         }
 
-        public BinaryArray(BinaryReader2 reader, int halfByte) {
+        public BinaryArray(BinaryParser reader, int halfByte) {
             length = halfByte;
             Deserialize(reader);
         }
@@ -23,7 +21,7 @@ namespace Ogx {
             return base.ToString() + $" ({length})";
         }
 
-        public override void Deserialize(BinaryReader2 reader) {
+        public override void Deserialize(BinaryParser reader) {
             if (length == 15) {
                 length = reader.ReadInt32();
             }

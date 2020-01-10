@@ -14,7 +14,7 @@ namespace Ogx {
             
         }
 
-        public BinaryPropertyList(BinaryReader2 reader) {
+        public BinaryPropertyList(BinaryParser reader) {
             Deserialize(reader);
         }
 
@@ -22,7 +22,7 @@ namespace Ogx {
             return "bplist" + version;
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
 
             version = Encoding.UTF8.GetString(reader.ReadBytes(2));
             switch (version) {

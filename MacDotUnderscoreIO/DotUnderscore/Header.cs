@@ -16,11 +16,11 @@ namespace Ogx {
 
         }
 
-        public Header(BinaryReader2 reader) {
+        public Header(BinaryParser reader) {
             Deserialize(reader);
         }
 
-        public void Deserialize(BinaryReader2 reader) {
+        public void Deserialize(BinaryParser reader) {
             MagicNumber = reader.ReadUInt32();
             Version = reader.ReadUInt16();
             Reserved = reader.ReadUInt16();

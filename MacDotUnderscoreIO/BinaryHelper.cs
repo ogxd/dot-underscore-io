@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Ogx {
 
@@ -14,7 +11,7 @@ namespace Ogx {
 
         public static TBinarySerializable Read<TBinarySerializable>(byte[] bytes) where TBinarySerializable : IBinarySerializable {
             TBinarySerializable binaryObject = Activator.CreateInstance<TBinarySerializable>();
-            BinaryReader2 br = new BinaryReader2(bytes);
+            BinaryParser br = new BinaryParser(bytes);
             binaryObject.Deserialize(br);
             return binaryObject;
         }
