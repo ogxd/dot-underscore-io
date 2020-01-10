@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Ogx
 {
@@ -6,14 +7,17 @@ namespace Ogx
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(BitConverter.IsLittleEndian);
+            var files = Directory.GetFiles(@"C:\TestFiles\");
+            ReadFile(files[3]);
 
-            string file = @"C:\Users\ogini\Projects\EXT_Claunia.IO\._plan maison.png";
-
-            DotUnderscore dotUnderscore = BinaryHelper.Read<DotUnderscore>(file);
-
-            Console.Write(dotUnderscore);
             Console.ReadKey();
+        }
+
+        static void ReadFile(string file)
+        {
+            Console.Write("Reading : " + file);
+            DotUnderscore dotUnderscore = BinaryHelper.Read<DotUnderscore>(file);
+            Console.Write(dotUnderscore);
         }
     }
 }

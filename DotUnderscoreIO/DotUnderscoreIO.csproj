@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{146FB3F3-03E6-4FAE-94CC-E347DBA08370}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ogx</RootNamespace>
     <AssemblyName>MacDotUnderscoreIO</AssemblyName>
@@ -16,11 +16,11 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,14 +28,18 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,27 +65,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryParser.cs" />
-    <Compile Include="DotUnderscore\BinaryBoolean.cs" />
-    <Compile Include="DotUnderscore\BinaryFloat.cs" />
-    <Compile Include="DotUnderscore\BinaryInteger.cs" />
-    <Compile Include="DotUnderscore\BinaryBlob.cs" />
-    <Compile Include="DotUnderscore\BinaryStringUnicode.cs" />
-    <Compile Include="DotUnderscore\BinaryStringASCII.cs" />
-    <Compile Include="DotUnderscore\BinaryArray.cs" />
-    <Compile Include="DotUnderscore\BinaryProperty.cs" />
-    <Compile Include="DotUnderscore\BinaryPropertyList.cs" />
-    <Compile Include="DotUnderscore\Attribute.cs" />
-    <Compile Include="DotUnderscore\DotUnderscore.cs" />
-    <Compile Include="DotUnderscore\Entry.cs" />
-    <Compile Include="DotUnderscore\Attributes.cs" />
-    <Compile Include="DotUnderscore\Header.cs" />
+    <Compile Include="Bplist\BinaryBoolean.cs" />
+    <Compile Include="Bplist\BinaryFloat.cs" />
+    <Compile Include="Bplist\BinaryInteger.cs" />
+    <Compile Include="Bplist\BinaryBlob.cs" />
+    <Compile Include="Bplist\BinaryStringUnicode.cs" />
+    <Compile Include="Bplist\BinaryStringASCII.cs" />
+    <Compile Include="Bplist\BinaryArray.cs" />
+    <Compile Include="Bplist\BinaryProperty.cs" />
+    <Compile Include="Bplist\BinaryPropertyList.cs" />
+    <Compile Include="Structure\Attribute.cs" />
+    <Compile Include="Structure\DotUnderscore.cs" />
+    <Compile Include="Structure\Entry.cs" />
+    <Compile Include="Structure\Attributes.cs" />
+    <Compile Include="Structure\Header.cs" />
     <Compile Include="BinaryHelper.cs" />
     <Compile Include="IBinarySerializable.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
