@@ -64,7 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryParser.cs" />
+    <Compile Include="BitWriter.cs" />
+    <Compile Include="BitReader.cs" />
     <Compile Include="Bplist\BinaryBoolean.cs" />
     <Compile Include="Bplist\BinaryFloat.cs" />
     <Compile Include="Bplist\BinaryInteger.cs" />
@@ -74,11 +75,12 @@
     <Compile Include="Bplist\BinaryArray.cs" />
     <Compile Include="Bplist\BinaryProperty.cs" />
     <Compile Include="Bplist\BinaryPropertyList.cs" />
+    <Compile Include="Entries\FooterEntry.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Structure\Attribute.cs" />
     <Compile Include="Structure\DotUnderscore.cs" />
-    <Compile Include="Structure\Entry.cs" />
-    <Compile Include="Structure\Attributes.cs" />
-    <Compile Include="Structure\Header.cs" />
+    <Compile Include="Entries\Entry.cs" />
+    <Compile Include="Structure\AttributesHeader.cs" />
     <Compile Include="BinaryHelper.cs" />
     <Compile Include="IBinarySerializable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,47 +1,45 @@
-﻿using System;
-using System.IO;
+﻿ using System;
 using System.Text;
 
 namespace Ogx {
 
-    public class Attribute : IBinarySerializable {
+    public class Attribute {
 
-        public uint ValueOffset;
-        public uint ValueLen;
-        public ushort Unknown; 
-        public byte NameLen;
-        public string Name;
+        public uint valueOffset;
+        public uint valueLen;
+        public ushort unknown;
+        private byte _nameLen;
+        public byte nameLen { get { return (byte)name.Length; } set { _nameLen = value; } }
+        public string name;
         public int padding;
-        public object Value;
+        public IBinarySerializable value;
 
         public Attribute() {
-            Value = new byte[0];
+
         }
 
-        public Attribute(BinaryParser reader) {
+        public Attribute(BitReader reader) {
             Deserialize(reader);
         }
 
         public override string ToString() {
-            return Name;
+            return name;
         }
 
-        public void Deserialize(BinaryParser reader) {
-            ValueOffset = reader.ReadUInt32();
-            ValueLen = reader.ReadUInt32();
-            Unknown = reader.ReadUInt16();
-            NameLen = reader.ReadByte();
-            Name = Encoding.UTF8.GetString(reader.ReadBytes(NameLen));
+        public void Deserialize(BitReader reader) {
+            valueOffset = reader.ReadUInt32();
+            valueLen = reader.ReadUInt32();
+            unknown = reader.ReadUInt16();
+            _nameLen = reader.ReadByte();
+            name = Encoding.ASCII.GetString(reader.ReadBytes(_nameLen));
             padding = reader.Pad();
             int position = reader.GetPosition();
-            reader.SetPosition((int)ValueOffset);
+            reader.SetPosition((int)valueOffset);
 
-            //Value = reader.ReadBytes((int)ValueLen);
-
-            string valueType = Encoding.UTF8.GetString(reader.ReadBytes(6));
+            string valueType = Encoding.ASCII.GetString(reader.ReadBytes(6));
             switch (valueType) {
                 case "bplist":
-                    Value = new BinaryPropertyList(reader);
+                    value = new BinaryPropertyList(reader);
                     break;
                 default:
                     Console.WriteLine($"Unsupported attribute value type : '{valueType}'");
@@ -49,11 +47,29 @@ namespace Ogx {
             }
 
             reader.SetPosition(position);
-
         }
 
-        public void Serialize(BinaryWriter writer) {
-            
+        public void SerializeHead(BitWriter writer) {
+
+            // Write in Attribute table
+            writer.Write(valueOffset);
+            writer.Write(valueLen);
+            writer.Write(unknown);
+            writer.Write(nameLen);
+            writer.Write(Encoding.ASCII.GetBytes(name));
+
+            padding = writer.Pad();
+        }
+
+        public void SerializeFork(BitWriter fork) {
+
+            valueOffset = (uint)(fork.offset + fork.Length);
+
+            value.Serialize(fork);
+
+            valueLen = (uint)(fork.offset + fork.Length) - valueOffset;
+
+            nameLen = (byte)name.Length;
         }
     }
 }

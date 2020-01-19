@@ -12,7 +12,7 @@ namespace Ogx {
             
         }
 
-        public BinaryFloat(BinaryParser reader, int halfByte) {
+        public BinaryFloat(BitReader reader, int halfByte) {
             length = (int)Math.Pow(2, halfByte);
             Deserialize(reader);
         }
@@ -21,7 +21,7 @@ namespace Ogx {
             return base.ToString() + $" ({length})";
         }
 
-        public override void Deserialize(BinaryParser reader) {
+        public override void Deserialize(BitReader reader) {
             switch (length) {
                 case 32:
                     value = reader.ReadSingle();
@@ -35,7 +35,7 @@ namespace Ogx {
             }
         }
 
-        public override void Serialize(BinaryWriter writer) {
+        public override void Serialize(BitWriter writer, BitWriter offsetWriter, ref long numProperty) {
 
         }
     }

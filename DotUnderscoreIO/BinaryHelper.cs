@@ -11,7 +11,7 @@ namespace Ogx {
 
         public static TBinarySerializable Read<TBinarySerializable>(byte[] bytes) where TBinarySerializable : IBinarySerializable {
             TBinarySerializable binaryObject = Activator.CreateInstance<TBinarySerializable>();
-            BinaryParser br = new BinaryParser(bytes);
+            BitReader br = new BitReader(bytes);
             binaryObject.Deserialize(br);
             return binaryObject;
         }
@@ -21,12 +21,9 @@ namespace Ogx {
         }
 
         public static byte[] Write(IBinarySerializable binaryObject) {
-            MemoryStream ms = new MemoryStream();
-            BinaryWriter br = new BinaryWriter(ms);
+            BitWriter br = new BitWriter(0);
             binaryObject.Serialize(br);
-            byte[] bytes = ms.ToArray();
-            ms.Close();
-            br.Close();
+            byte[] bytes = br.GetBytes().ToArray();
             return bytes;
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Text;
 
 namespace Ogx {
 
@@ -12,7 +11,7 @@ namespace Ogx {
             
         }
 
-        public BinaryStringASCII(BinaryParser reader, int halfByte) {
+        public BinaryStringASCII(BitReader reader, int halfByte) {
             length = halfByte;
             Deserialize(reader);
         }
@@ -21,16 +20,20 @@ namespace Ogx {
             return base.ToString() + $" ({length})";
         }
 
-        public override void Deserialize(BinaryParser reader) {
+        public override void Deserialize(BitReader reader) {
             if (length == 15) {
                 length = reader.ReadInt32();
             }
 
-            value = Encoding.UTF8.GetString(reader.ReadBytes(length));
+            value = Encoding.ASCII.GetString(reader.ReadBytes(length));
         }
 
-        public override void Serialize(BinaryWriter writer) {
-
+        public override void Serialize(BitWriter writer, BitWriter offsetWriter, ref long numProperty) {
+            numProperty++;
+            offsetWriter.Write((byte)writer.Length);
+            length = value.Length;
+            WriteMarker(writer, 0x05, length);
+            writer.Write(Encoding.ASCII.GetBytes(value));
         }
     }
 }

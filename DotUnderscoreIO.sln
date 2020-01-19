@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotUnderscoreIO", "DotUnderscoreIO\DotUnderscoreIO.csproj", "{146FB3F3-03E6-4FAE-94CC-E347DBA08370}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMacFileTags", "TestMacFileTags\TestMacFileTags.csproj", "{6FA5E901-B97C-4449-8C94-F0D805AF8570}"
+	ProjectSection(ProjectDependencies) = postProject
+		{146FB3F3-03E6-4FAE-94CC-E347DBA08370} = {146FB3F3-03E6-4FAE-94CC-E347DBA08370}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
