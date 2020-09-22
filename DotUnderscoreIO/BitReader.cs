@@ -123,13 +123,6 @@ namespace Ogx {
             return data.ToArray();
         }
 
-        public sbyte[] ReadSBytes(int count) {
-            ReadOnlySpan<byte> data = new ReadOnlySpan<byte>(bytes, position, count);
-            position += count;
-            ReadOnlySpan<sbyte> sbuffer = MemoryMarshal.Cast<byte, sbyte>(data);
-            return sbuffer.ToArray();
-        }
-
         public int Pad() {
             int padding = 0;
             if (position % 4 > 0)

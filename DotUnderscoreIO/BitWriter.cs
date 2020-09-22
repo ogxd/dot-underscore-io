@@ -113,12 +113,6 @@ namespace Ogx {
             bytes.AddRange(writer.bytes);
         }
 
-        public void Write(sbyte[] value) {
-            ReadOnlySpan<sbyte> data = new ReadOnlySpan<sbyte>(value);
-            ReadOnlySpan<byte> sbuffer = MemoryMarshal.Cast<sbyte, byte>(data);
-            bytes.AddRange(sbuffer.ToArray());
-        }
-
         public int Pad() {
             int padding = 0;
             if ((Length + offset) % 4 > 0)
