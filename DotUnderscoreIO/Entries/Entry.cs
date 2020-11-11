@@ -4,7 +4,7 @@ namespace Ogx {
 
     public class Entry {
 
-        public uint id = 9;
+        public uint id;
         public uint offset;
         public uint size;
 
@@ -12,8 +12,8 @@ namespace Ogx {
 
         public IBinarySerializable data;
 
-        public Entry() {
-
+        public Entry(uint id) {
+            this.id = id;
         }
 
         public Entry(BitReader reader) {
@@ -32,8 +32,9 @@ namespace Ogx {
                 case 9:
                     data = new AttributesHeader(reader);
                     break;
-                default:
                 case 2:
+                    break;
+                default:
                     Console.WriteLine($"Unknown Entry type id '{id}'");
                     break;
             }
@@ -43,12 +44,23 @@ namespace Ogx {
 
         public virtual void Serialize(BitWriter writer, BitWriter fork) {
 
-            offset = (uint)(fork.offset + fork.Length);
+            switch (id)
+            {
+                case 9:
+                    offset = (uint)(fork.offset + fork.Length);
+                    data.Serialize(fork);
 
-            data.Serialize(fork);
-
-            size = (uint)(fork.offset + fork.Length) - offset;
-            size = 3760; // ¯\_(ツ)_/¯
+                    size = (uint)(fork.offset + fork.Length) - offset;
+                    size = 3760; // ¯\_(ツ)_/¯
+                    break;
+                case 2:
+                    size = 286;
+                    offset = 3810;
+                    break;
+                default:
+                    Console.WriteLine($"Unknown Entry type id '{id}'");
+                    break;
+            }
 
             writer.Write(id);
             writer.Write(offset);

@@ -47,8 +47,8 @@ namespace Ogx
         static void WriteFile() {
 
             var dotUnderscore = new DotUnderscore();
-            var entry = new Entry();
-            var footerEntry = new FooterEntry();
+            var entry = new Entry(9u);
+            var footerEntry = new Entry(2u); // Footer
             footerEntry.id = 2;
             footerEntry.size = 286;
             footerEntry.offset = 3810;
